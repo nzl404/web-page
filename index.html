@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lenathea</title>
+    <!-- Favicon website menggunakan gambar dari URL -->
+    <link rel="icon" type="image/png" href="https://zeltoria.github.io/m/invite.png">
     <style>
-        /* Import Arcade/Pixel Font (Press Start 2P) dan Quicksand dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;500;600;700&display=swap');
+        /* Import Arcade/Pixel Font (Press Start 2P) dan Chakra Petch dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Press+Start+2P&display=swap');
 
         /* Main Colors */
         :root {
@@ -32,9 +34,10 @@
             display: flex;
             flex-direction: column;
             margin: 0;
-            padding: 2rem 1rem 0 1rem; /* Padding bawah dihapus untuk memberi ruang footer */
+            padding: 2rem 1rem 0 1rem;
             overflow-x: hidden;
-            font-family: 'Quicksand', sans-serif;
+            /* Font diubah menjadi Chakra Petch agar matching dengan tema arcade */
+            font-family: 'Chakra Petch', sans-serif;
             color: #000;
             background: linear-gradient(45deg, var(--background-pink), var(--background-blue));
             background-attachment: fixed;
@@ -70,7 +73,7 @@
         .page-content {
             position: relative;
             z-index: 2;
-            flex: 1; /* Membuat content mengisi sisa ruang di atas footer */
+            flex: 1;
         }
 
         /* Main Title */
@@ -99,7 +102,7 @@
         .user-status-container {
             position: relative;
             overflow: hidden;
-            margin: 0 auto 2rem auto !important; /* Disesuaikan untuk rata tengah */
+            margin: 0 auto 2rem auto !important;
             display: inline-block;
             border: 2px solid var(--primary-color);
             background: rgba(255, 255, 255, 0.5);
@@ -187,7 +190,7 @@
             border-radius: 4px;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
             width: fit-content;
-            margin: 1rem auto 0 auto; /* Supaya tombol ke tengah */
+            margin: 1rem auto 0 auto;
             display: block;
         }
 
@@ -243,7 +246,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 1rem;
-            justify-content: center; /* Dipindahkan ke tengah */
+            justify-content: center;
         }
 
         .retro-squares div {
@@ -316,10 +319,10 @@
             line-height: 1.4;
         }
 
-        /* Styling text Quicksand dalam Card */
+        /* Styling text dalam Card menggunakan Chakra Petch */
         .arcade-card p {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.1rem;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.15rem;
             font-weight: 500;
             line-height: 1.5;
             margin-bottom: 1.5rem;
@@ -353,10 +356,10 @@
 
         /* Teks deskripsi spesifik di tab Home */
         .home-description {
-            font-family: 'Quicksand', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
             margin: 1.5rem 0; 
             font-weight: 500; 
-            font-size: 1.15rem; 
+            font-size: 1.25rem; 
             line-height: 1.6;
         }
 
@@ -366,10 +369,10 @@
             z-index: 2;
             text-align: center;
             padding: 1.5rem;
-            margin-top: auto; /* Mendorong footer ke bagian paling bawah */
-            font-family: 'Quicksand', sans-serif;
+            margin-top: auto;
+            font-family: 'Chakra Petch', sans-serif;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--primary-color);
             opacity: 0.9;
         }
@@ -433,7 +436,7 @@
                 </p>
 
                 <!-- Tombol di Home -->
-                <a href="https://api.leaa.site" class="try-api-btn" style="text-decoration: none; text-align: center;">Documentation</a>
+                <button class="try-api-btn">Documentation</button>
             </div>
         </div>
         
@@ -499,22 +502,19 @@
     <!-- Script JavaScript untuk navigasi Tab -->
     <script>
         function openTab(evt, tabName) {
-            // Sembunyikan semua isi tab
             let tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
                 tabContents[i].style.display = "none";
             }
 
-            // Hapus status aktif dari semua tombol
             let tabButtons = document.getElementsByClassName("tab-button");
             for (let i = 0; i < tabButtons.length; i++) {
                 tabButtons[i].classList.remove("active-tab");
             }
 
-            // Tampilkan isi tab yang di klik dan buat tombolnya menjadi aktif
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.classList.add("active-tab");
         }
     </script>
 </body>
-                    </html>
+    </html>
