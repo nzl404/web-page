@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WE ARE THE FUTURE - API & BOT</title>
     <style>
-        /* Import Arcade/Pixel Fonts dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+        /* Import Arcade/Pixel Font (Press Start 2P) dan Quicksand dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;500;600;700&display=swap');
 
         /* Main Colors */
         :root {
@@ -29,11 +29,12 @@
         body {
             position: relative;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             margin: 0;
-            padding: 2rem 1rem;
+            padding: 2rem 1rem 0 1rem; /* Padding bawah dihapus untuk memberi ruang footer */
             overflow-x: hidden;
-            font-family: 'VT323', monospace;
-            font-size: 1.4rem;
+            font-family: 'Quicksand', sans-serif;
             color: #000;
             background: linear-gradient(45deg, var(--background-pink), var(--background-blue));
             background-attachment: fixed;
@@ -69,13 +70,14 @@
         .page-content {
             position: relative;
             z-index: 2;
+            flex: 1; /* Membuat content mengisi sisa ruang di atas footer */
         }
 
         /* Main Title */
         .main-title {
             margin-top: 1.25rem;
             margin-bottom: 0.75rem;
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Press Start 2P', cursive; 
             font-size: 1.8rem;
             line-height: 1.4;
             color: var(--primary-color);
@@ -97,14 +99,16 @@
         .user-status-container {
             position: relative;
             overflow: hidden;
-            margin-top: 0 !important;
-            margin-bottom: 2rem !important;
+            margin: 0 auto 2rem auto !important; /* Disesuaikan untuk rata tengah */
+            display: inline-block;
             border: 2px solid var(--primary-color);
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             animation: fadeIn 0.7s ease both;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
         }
 
         /* Tabs */
@@ -149,7 +153,7 @@
         #category-tabs .tab-button {
             flex-shrink: 0;
             padding: 10px 20px;
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Press Start 2P', cursive; 
             font-size: 0.6rem;
             color: #000;
             white-space: nowrap;
@@ -173,7 +177,7 @@
         /* Buttons (Arcade Style) */
         .try-api-btn {
             padding: 12px 30px;
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Press Start 2P', cursive; 
             font-size: 0.8rem;
             color: #ffffff;
             cursor: pointer;
@@ -183,7 +187,8 @@
             border-radius: 4px;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
             width: fit-content;
-            margin-top: auto; /* Untuk menempatkan tombol di bawah di dalam flex card */
+            margin: 1rem auto 0 auto; /* Supaya tombol ke tengah */
+            display: block;
         }
 
         .try-api-btn:hover {
@@ -225,33 +230,20 @@
         /* Layout Container for Home */
         .layout-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            max-width: 1000px;
+            text-align: center;
+            max-width: 800px;
             margin: 2rem auto;
             padding: 2rem;
             animation: fadeIn 0.5s ease both;
-        }
-
-        .left-section {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 2rem;
-        }
-
-        .right-section {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            justify-content: center;
-            position: relative;
         }
 
         .retro-squares {
             display: flex;
             gap: 10px;
             margin-bottom: 1rem;
+            justify-content: center; /* Dipindahkan ke tengah */
         }
 
         .retro-squares div {
@@ -266,58 +258,6 @@
         .square-1 { background-color: #fff9db !important; }
         .square-2 { background-color: #e6ffed !important; }
         .square-3 { background-color: #f3e6ff !important; }
-
-        /* Laptop Mockup */
-        .laptop-mockup {
-            width: 100%;
-            max-width: 400px;
-            animation: fadeIn 1s ease both;
-        }
-
-        .browser-window {
-            background: #fff;
-            border: 4px solid var(--primary-color);
-            border-radius: 8px 8px 0 0;
-            height: 220px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .browser-header {
-            background: var(--primary-soft);
-            border-bottom: 4px solid var(--primary-color);
-            height: 30px;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            gap: 5px;
-        }
-
-        .browser-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 0; 
-            border: 2px solid var(--primary-color);
-        }
-
-        .laptop-base {
-            background: var(--primary-color);
-            height: 25px;
-            border-radius: 0 0 12px 12px;
-            width: 110%;
-            margin-left: -5%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 4px solid #000;
-        }
-
-        .laptop-trackpad {
-            width: 60px;
-            height: 6px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 2px;
-        }
         
         /* Tab Content Control */
         .tab-content {
@@ -376,8 +316,12 @@
             line-height: 1.4;
         }
 
+        /* Styling text Quicksand dalam Card */
         .arcade-card p {
-            font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5;
             margin-bottom: 1.5rem;
             color: #333;
         }
@@ -407,27 +351,36 @@
             fill: var(--primary-color);
         }
 
+        /* Teks deskripsi spesifik di tab Home */
+        .home-description {
+            font-family: 'Quicksand', sans-serif;
+            margin: 1.5rem 0; 
+            font-weight: 500; 
+            font-size: 1.15rem; 
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .site-footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto; /* Mendorong footer ke bagian paling bawah */
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            opacity: 0.9;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .layout-container {
-                flex-direction: column;
                 padding: 1rem;
             }
-            .left-section {
-                padding-right: 0;
-                text-align: center;
-                margin-bottom: 3rem;
-            }
             .main-title {
-                text-align: center !important;
                 font-size: 1.3rem; 
-            }
-            .retro-squares {
-                justify-content: center;
-            }
-            .user-status-container {
-                display: inline-block;
-                margin: 0 auto !important;
             }
             #category-tabs .tab-button {
                 font-size: 0.55rem;
@@ -462,50 +415,25 @@
         <!-- TAB CONTENT: HOME -->
         <div id="tab-home" class="tab-content active">
             <div class="layout-container">
-                <!-- Left Side Content -->
-                <div class="left-section">
-                    <!-- Squares -->
-                    <div class="retro-squares">
-                        <div class="square-1"></div>
-                        <div class="square-2"></div>
-                        <div class="square-3"></div>
-                    </div>
-
-                    <h1 class="main-title" style="text-align: left;">WE ARE THE FUTURE</h1>
-                    
-                    <div class="user-status-container" style="display: inline-block; padding: 10px 20px; border-radius: 8px;">
-                        <p class="slogan" style="margin: 0;">DIVE INTO NEW WORLD</p>
-                    </div>
-                    
-                    <p style="margin: 1.5rem 0; font-weight: 500; font-size: 1.3rem; line-height: 1.6;">
-                        Kami menyediakan API gratis yang powerful untuk para developer dan Bot WhatsApp multifungsi yang dapat diakses oleh semua pengguna. Bangun masa depan digitalmu bersama kami!
-                    </p>
-
-                    <!-- Tombol di Home diganti menjadi Documentation -->
-                    <button class="try-api-btn">Documentation</button>
+                <!-- Squares -->
+                <div class="retro-squares">
+                    <div class="square-1"></div>
+                    <div class="square-2"></div>
+                    <div class="square-3"></div>
                 </div>
 
-                <!-- Right Side Image/Laptop Representation -->
-                <div class="right-section">
-                    <div class="laptop-mockup">
-                        <div class="browser-window">
-                            <div class="browser-header">
-                                <div class="browser-dot" style="background: #ffb3ba;"></div>
-                                <div class="browser-dot" style="background: #bae1ff;"></div>
-                                <div class="browser-dot" style="background: #baffc9;"></div>
-                            </div>
-                            <div style="padding: 20px; text-align: center; height: 100%; background: linear-gradient(to bottom, #e6f0ff, #ffe6ea);">
-                                <!-- Pixel Art style globe/eye -->
-                                <div style="width: 80px; height: 80px; background: var(--primary-color); margin: 30px auto; border: 4px solid #000; box-shadow: 4px 4px 0 rgba(0,0,0,0.2); position: relative;">
-                                    <div style="width: 30px; height: 30px; background: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #000;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="laptop-base">
-                            <div class="laptop-trackpad"></div>
-                        </div>
-                    </div>
+                <h1 class="main-title">WE ARE THE FUTURE</h1>
+                
+                <div class="user-status-container">
+                    <p class="slogan" style="margin: 0;">DIVE INTO NEW WORLD</p>
                 </div>
+                
+                <p class="home-description">
+                    Kami menyediakan API gratis yang powerful untuk para developer dan Bot WhatsApp multifungsi yang dapat diakses oleh semua pengguna. Bangun masa depan digitalmu bersama kami!
+                </p>
+
+                <!-- Tombol di Home -->
+                <button class="try-api-btn">Documentation</button>
             </div>
         </div>
         
@@ -570,6 +498,11 @@
 
     </div>
 
+    <!-- Footer Copyright -->
+    <footer class="site-footer">
+        &copy; 2024 We Are The Future. All Rights Reserved.
+    </footer>
+
     <!-- Script JavaScript untuk navigasi Tab -->
     <script>
         function openTab(evt, tabName) {
@@ -591,4 +524,4 @@
         }
     </script>
 </body>
-    </html>
+                    </html>
