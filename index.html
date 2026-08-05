@@ -182,6 +182,8 @@
             box-shadow: 4px 4px 0 #000;
             border-radius: 4px;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
+            width: fit-content;
+            margin-top: auto; /* Untuk menempatkan tombol di bawah di dalam flex card */
         }
 
         .try-api-btn:hover {
@@ -220,7 +222,7 @@
         .cloud-2::before { top: -25px; left: 20px; width: 55px; height: 55px; }
         .cloud-2::after { top: -18px; left: 50px; width: 45px; height: 45px; }
 
-        /* Layout Container */
+        /* Layout Container for Home */
         .layout-container {
             display: flex;
             flex-wrap: wrap;
@@ -265,7 +267,7 @@
         .square-2 { background-color: #e6ffed !important; }
         .square-3 { background-color: #f3e6ff !important; }
 
-        /* Mockup (Pixel adjustments) */
+        /* Laptop Mockup */
         .laptop-mockup {
             width: 100%;
             max-width: 400px;
@@ -326,24 +328,86 @@
             display: block;
         }
 
-        .page-block {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(255,255,255,0.8);
-            border: 4px solid var(--primary-color);
-            box-shadow: 8px 8px 0 var(--primary-color);
-            text-align: center;
+        /* --- Cards Layout for Projects & About --- */
+        .section-title {
+            text-align: center; 
+            font-family: 'Press Start 2P', cursive; 
+            color: var(--primary-color); 
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
             animation: fadeIn 0.4s ease;
         }
-        
-        .page-block h2 {
-            font-family: 'Press Start 2P', cursive;
-            color: var(--primary-color);
-            font-size: 1.2rem;
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+            animation: fadeIn 0.5s ease both;
         }
 
-        /* Mobile Responsiveness (Responsive di HP) */
+        .arcade-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid var(--primary-color);
+            box-shadow: 6px 6px 0 var(--primary-color);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .arcade-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .arcade-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .arcade-card p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        /* Profile specific styling */
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border: 4px solid #000;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .github-link {
+            color: #000;
+            text-decoration: none;
+            margin-top: auto;
+            display: inline-block;
+        }
+
+        .github-link svg {
+            transition: transform 0.2s ease, fill 0.2s ease;
+        }
+
+        .github-link:hover svg {
+            transform: scale(1.2) rotate(5deg);
+            fill: var(--primary-color);
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .layout-container {
                 flex-direction: column;
@@ -356,7 +420,7 @@
             }
             .main-title {
                 text-align: center !important;
-                font-size: 1.3rem; /* Diperkecil karena font arcade sangat lebar */
+                font-size: 1.3rem; 
             }
             .retro-squares {
                 justify-content: center;
@@ -368,6 +432,10 @@
             #category-tabs .tab-button {
                 font-size: 0.55rem;
                 padding: 8px 12px;
+            }
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -385,10 +453,8 @@
             <div class="tabs-wrapper">
                 <div id="category-tabs">
                     <button class="tab-button active-tab" onclick="openTab(event, 'tab-home')">HOME</button>
-                    <button class="tab-button" onclick="openTab(event, 'tab-about')">ABOUT</button>
                     <button class="tab-button" onclick="openTab(event, 'tab-projects')">PROJECTS</button>
-                    <button class="tab-button" onclick="openTab(event, 'tab-categories')">CATEGORIES</button>
-                    <button class="tab-button" onclick="openTab(event, 'tab-contact')">CONTACT</button>
+                    <button class="tab-button" onclick="openTab(event, 'tab-about')">ABOUT</button>
                 </div>
             </div>
         </div>
@@ -415,7 +481,8 @@
                         Kami menyediakan API gratis yang powerful untuk para developer dan Bot WhatsApp multifungsi yang dapat diakses oleh semua pengguna. Bangun masa depan digitalmu bersama kami!
                     </p>
 
-                    <button class="try-api-btn">START NOW</button>
+                    <!-- Tombol di Home diganti menjadi Documentation -->
+                    <button class="try-api-btn">Documentation</button>
                 </div>
 
                 <!-- Right Side Image/Laptop Representation -->
@@ -442,35 +509,62 @@
             </div>
         </div>
         
-        <!-- TAB CONTENT: ABOUT -->
-        <div id="tab-about" class="tab-content">
-            <div class="page-block">
-                <h2>ABOUT US</h2>
-                <p>Platform terdepan yang didedikasikan untuk menghubungkan teknologi dengan kemudahan. Kami mengelola infrastruktur API gratis yang handal serta layanan Bot WhatsApp interaktif untuk memudahkan pekerjaanmu.</p>
-            </div>
-        </div>
-
         <!-- TAB CONTENT: PROJECTS -->
         <div id="tab-projects" class="tab-content">
-            <div class="page-block">
-                <h2>OUR PROJECTS</h2>
-                <p>1. Rest API untuk Developer<br><br>2. WhatsApp Bot Multifungsi<br><br>3. Alat Scraper & Automation</p>
+            <h2 class="section-title">OUR PROJECTS</h2>
+            <div class="cards-container">
+                <!-- Project Card 1 -->
+                <div class="arcade-card">
+                    <h3>Rest API</h3>
+                    <p>API gratis dan handal untuk mempermudah pekerjaan developer web maupun mobile.</p>
+                    <button class="try-api-btn">Try Now</button>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="arcade-card">
+                    <h3>WhatsApp Bot</h3>
+                    <p>Bot multifungsi dengan fitur AI, downloader, dan automasi obrolan pintar.</p>
+                    <button class="try-api-btn">Try Now</button>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="arcade-card">
+                    <h3>Web Scraper</h3>
+                    <p>Alat canggih untuk mengambil data publik dari berbagai situs dengan cepat.</p>
+                    <button class="try-api-btn">Try Now</button>
+                </div>
             </div>
         </div>
 
-        <!-- TAB CONTENT: CATEGORIES -->
-        <div id="tab-categories" class="tab-content">
-            <div class="page-block">
-                <h2>CATEGORIES</h2>
-                <p>API Downloader | AI Integration | Tools & Utilities | Bot Scripts</p>
-            </div>
-        </div>
+        <!-- TAB CONTENT: ABOUT -->
+        <div id="tab-about" class="tab-content">
+            <h2 class="section-title">ABOUT US</h2>
+            <div class="cards-container">
+                <!-- Profile Card 1 -->
+                <div class="arcade-card">
+                    <img src="https://ui-avatars.com/api/?name=Wudy+Team&background=41749e&color=fff&size=100" class="profile-img" alt="Profile 1">
+                    <h3>Wudy Team</h3>
+                    <p>Founder & Fullstack Developer pengembang struktur utama sistem.</p>
+                    <a href="https://github.com/" target="_blank" class="github-link" title="Visit GitHub">
+                        <!-- SVG Logo GitHub -->
+                        <svg height="35" viewBox="0 0 16 16" version="1.1" width="35" aria-hidden="true">
+                            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
 
-        <!-- TAB CONTENT: CONTACT -->
-        <div id="tab-contact" class="tab-content">
-            <div class="page-block">
-                <h2>CONTACT</h2>
-                <p>Email: admin@wearethefuture.com<br><br>WhatsApp: +62 812-XXXX-XXXX</p>
+                <!-- Profile Card 2 -->
+                <div class="arcade-card">
+                    <img src="https://ui-avatars.com/api/?name=Co+Founder&background=345f82&color=fff&size=100" class="profile-img" alt="Profile 2">
+                    <h3>Co-Founder</h3>
+                    <p>UI/UX Designer & Pengelola Bot WhatsApp server.</p>
+                    <a href="https://github.com/" target="_blank" class="github-link" title="Visit GitHub">
+                        <!-- SVG Logo GitHub -->
+                        <svg height="35" viewBox="0 0 16 16" version="1.1" width="35" aria-hidden="true">
+                            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
 
