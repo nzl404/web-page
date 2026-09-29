@@ -10,13 +10,98 @@
         /* Import Arcade/Pixel Font (Press Start 2P) dan Chakra Petch dari Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Press+Start+2P&display=swap');
 
-        /* Main Colors */
+        /* Main Colors & Theme Variables */
         :root {
             --primary-color: #41749e;
             --primary-hover: #345f82;
             --primary-soft: rgba(65, 116, 158, 0.15);
             --background-pink: #ffe6ea;
             --background-blue: #e6f0ff;
+            --bg-gradient: linear-gradient(45deg, var(--background-pink), var(--background-blue));
+
+            --text-main: #000000;
+            --text-desc: #333333;
+            --title-color: var(--primary-color);
+            --title-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7);
+            --slogan-color: var(--primary-color);
+
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: var(--primary-color);
+            --card-shadow: 6px 6px 0 var(--primary-color);
+            --card-hover-shadow: 8px 8px 0 var(--primary-color);
+            --card-text: #333333;
+
+            --nav-bg: rgba(255, 255, 255, 0.88);
+            --nav-border: var(--primary-color);
+            --nav-shadow: 4px 4px 0 var(--primary-color);
+            --nav-text: #000000;
+            --nav-active-text: #ffffff;
+            --nav-active-bg: var(--primary-color);
+
+            --status-bg: rgba(255, 255, 255, 0.5);
+            --status-border: var(--primary-color);
+
+            --btn-bg: var(--primary-color);
+            --btn-hover: var(--primary-hover);
+            --btn-text: #ffffff;
+            --btn-border: #000000;
+            --btn-shadow: 4px 4px 0 #000000;
+
+            --cloud-color: rgba(255, 255, 255, 0.65);
+            --github-color: #000000;
+            --footer-color: var(--primary-color);
+
+            --square-1: #fff9db;
+            --square-2: #e6ffed;
+            --square-3: #f3e6ff;
+        }
+
+        /* SEVENTEEN Dark Palette (Twilight Rose Quartz & Midnight Serenity) */
+        [data-theme="dark"] {
+            color-scheme: dark;
+
+            --primary-color: #8da4ce;
+            --primary-hover: #7b94bf;
+            --primary-soft: rgba(141, 164, 206, 0.18);
+            --background-pink: #1c1626;
+            --background-blue: #0d0f17;
+            --bg-gradient: radial-gradient(circle at 50% 0%, #1c1626 0%, #111422 45%, #0a0b12 100%);
+
+            --text-main: #f8fafc;
+            --text-desc: #cbd5e1;
+            --title-color: #f4b0be;
+            --title-shadow: 3px 3px 0 #0a0b12, 0 0 20px rgba(244, 176, 190, 0.35);
+            --slogan-color: #8da4ce;
+
+            --card-bg: rgba(22, 26, 40, 0.88);
+            --card-border: #8da4ce;
+            --card-shadow: 6px 6px 0 #8da4ce;
+            --card-hover-shadow: 8px 8px 0 #f4a8b8;
+            --card-text: #cbd5e1;
+
+            --nav-bg: rgba(20, 24, 36, 0.88);
+            --nav-border: #8da4ce;
+            --nav-shadow: 4px 4px 0 #8da4ce;
+            --nav-text: #cbd5e1;
+            --nav-active-text: #0b0f19;
+            --nav-active-bg: #8da4ce;
+
+            --status-bg: rgba(22, 26, 40, 0.65);
+            --status-border: #8da4ce;
+
+            --btn-bg: #8da4ce;
+            --btn-hover: #7b94bf;
+            --btn-text: #0b0f19;
+            --btn-border: #f4a8b8;
+            --btn-shadow: 4px 4px 0 #f4a8b8;
+
+            --cloud-color: rgba(141, 164, 206, 0.12);
+            --github-color: #cbd5e1;
+            --footer-color: #8da4ce;
+
+            --square-1: #f4a8b8;
+            --square-2: #8da4ce;
+            --square-3: #c084fc;
         }
 
         /* Global Reset */
@@ -36,11 +121,11 @@
             margin: 0;
             padding: 2rem 1rem 0 1rem;
             overflow-x: hidden;
-            /* Font diubah menjadi Chakra Petch agar matching dengan tema arcade */
             font-family: 'Chakra Petch', sans-serif;
-            color: #000;
-            background: linear-gradient(45deg, var(--background-pink), var(--background-blue));
+            color: var(--text-main);
+            background: var(--bg-gradient);
             background-attachment: fixed;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* Animations */
@@ -76,6 +161,55 @@
             flex: 1;
         }
 
+        /* Theme Switcher Button */
+        .theme-switch-container {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 100;
+        }
+
+        .theme-toggle-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            color: var(--primary-color);
+            background: var(--card-bg);
+            border: 2px solid var(--primary-color);
+            box-shadow: 3px 3px 0 var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0 var(--primary-color);
+        }
+
+        .theme-toggle-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--primary-color);
+        }
+
+        .theme-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .theme-toggle-btn:hover .theme-icon {
+            transform: rotate(18deg);
+        }
+
         /* Main Title */
         .main-title {
             margin-top: 1.25rem;
@@ -83,9 +217,10 @@
             font-family: 'Press Start 2P', cursive; 
             font-size: 1.8rem;
             line-height: 1.4;
-            color: var(--primary-color);
-            text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7);
+            color: var(--title-color);
+            text-shadow: var(--title-shadow);
             animation: wobble 2s ease-in-out infinite;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         /* Slogan */
@@ -95,7 +230,8 @@
             font-family: 'Press Start 2P', cursive;
             font-size: 0.8rem;
             line-height: 1.4;
-            color: var(--primary-color);
+            color: var(--slogan-color);
+            transition: color 0.3s ease;
         }
 
         /* Server Status */
@@ -104,12 +240,12 @@
             overflow: hidden;
             margin: 0 auto 2rem auto !important;
             display: inline-block;
-            border: 2px solid var(--primary-color);
-            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid var(--status-border);
+            background: var(--status-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             animation: fadeIn 0.7s ease both;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, border-color 0.3s ease;
             padding: 10px 20px;
             border-radius: 8px;
         }
@@ -147,10 +283,11 @@
             margin-left: auto;
             padding: 5px 16px;
             gap: 8px;
-            background-color: rgba(255, 255, 255, 0.88);
-            border: 2px solid var(--primary-color);
+            background-color: var(--nav-bg);
+            border: 2px solid var(--nav-border);
             border-radius: 8px;
-            box-shadow: 4px 4px 0 var(--primary-color);
+            box-shadow: var(--nav-shadow);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         #category-tabs .tab-button {
@@ -158,7 +295,7 @@
             padding: 10px 20px;
             font-family: 'Press Start 2P', cursive; 
             font-size: 0.6rem;
-            color: #000;
+            color: var(--nav-text);
             white-space: nowrap;
             cursor: pointer;
             background-color: transparent;
@@ -173,8 +310,9 @@
         }
 
         #category-tabs .tab-button.active-tab {
-            color: #ffffff;
-            background-color: var(--primary-color);
+            color: var(--nav-active-text);
+            background-color: var(--nav-active-bg);
+            font-weight: bold;
         }
 
         /* Buttons (Arcade Style) */
@@ -182,25 +320,27 @@
             padding: 12px 30px;
             font-family: 'Press Start 2P', cursive; 
             font-size: 0.8rem;
-            color: #ffffff;
+            color: var(--btn-text);
             cursor: pointer;
-            background-color: var(--primary-color);
-            border: 2px solid #000;
-            box-shadow: 4px 4px 0 #000;
+            background-color: var(--btn-bg);
+            border: 2px solid var(--btn-border);
+            box-shadow: var(--btn-shadow);
             border-radius: 4px;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease, color 0.2s ease;
             width: fit-content;
             margin: 1rem auto 0 auto;
             display: block;
+            text-decoration: none;
+            text-align: center;
         }
 
         .try-api-btn:hover {
-            background-color: var(--primary-hover);
+            background-color: var(--btn-hover);
         }
 
         .try-api-btn:active {
             transform: translate(4px, 4px);
-            box-shadow: 0 0 0 #000;
+            box-shadow: 0 0 0 transparent;
         }
 
         /* Clouds */
@@ -208,18 +348,20 @@
             position: absolute;
             left: 0;
             z-index: 1;
-            background: rgba(255, 255, 255, 0.65);
+            background: var(--cloud-color);
             border-radius: 50px;
             filter: blur(0.2px);
             animation: float linear infinite;
+            transition: background-color 0.3s ease;
         }
 
         .cloud::before,
         .cloud::after {
             content: '';
             position: absolute;
-            background: rgba(255, 255, 255, 0.65);
+            background: var(--cloud-color);
             border-radius: 50%;
+            transition: background-color 0.3s ease;
         }
 
         .cloud-1 { top: 20%; width: 100px; height: 40px; animation-duration: 30s; }
@@ -253,14 +395,14 @@
             width: 30px;
             height: 30px;
             border: 2px solid var(--primary-color);
-            background: white;
             border-radius: 4px;
             box-shadow: 2px 2px 0 var(--primary-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .square-1 { background-color: #fff9db !important; }
-        .square-2 { background-color: #e6ffed !important; }
-        .square-3 { background-color: #f3e6ff !important; }
+        .square-1 { background-color: var(--square-1) !important; }
+        .square-2 { background-color: var(--square-2) !important; }
+        .square-3 { background-color: var(--square-3) !important; }
         
         /* Tab Content Control */
         .tab-content {
@@ -275,10 +417,11 @@
         .section-title {
             text-align: center; 
             font-family: 'Press Start 2P', cursive; 
-            color: var(--primary-color); 
+            color: var(--title-color); 
             margin-top: 2.5rem;
             margin-bottom: 1.5rem;
             animation: fadeIn 0.4s ease;
+            transition: color 0.3s ease;
         }
 
         .cards-container {
@@ -293,9 +436,9 @@
         }
 
         .arcade-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 4px solid var(--primary-color);
-            box-shadow: 6px 6px 0 var(--primary-color);
+            background: var(--card-bg);
+            border: 4px solid var(--card-border);
+            box-shadow: var(--card-shadow);
             padding: 1.5rem;
             width: 100%;
             max-width: 300px;
@@ -303,12 +446,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
             backdrop-filter: blur(8px);
+            border-radius: 6px;
         }
 
         .arcade-card:hover {
             transform: translateY(-6px);
+            box-shadow: var(--card-hover-shadow);
         }
 
         .arcade-card h3 {
@@ -317,6 +462,7 @@
             color: var(--primary-color);
             margin-bottom: 1rem;
             line-height: 1.4;
+            transition: color 0.3s ease;
         }
 
         /* Styling text dalam Card menggunakan Chakra Petch */
@@ -326,23 +472,26 @@
             font-weight: 500;
             line-height: 1.5;
             margin-bottom: 1.5rem;
-            color: #333;
+            color: var(--card-text);
+            transition: color 0.3s ease;
         }
 
         /* Profile specific styling */
         .profile-img {
             width: 100px;
             height: 100px;
-            border: 4px solid #000;
+            border: 4px solid var(--primary-color);
             border-radius: 50%;
             margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
         }
 
         .github-link {
-            color: #000;
+            color: var(--github-color);
             text-decoration: none;
             margin-top: auto;
             display: inline-block;
+            transition: color 0.3s ease;
         }
 
         .github-link svg {
@@ -361,6 +510,8 @@
             font-weight: 500; 
             font-size: 1.25rem; 
             line-height: 1.6;
+            color: var(--text-desc);
+            transition: color 0.3s ease;
         }
 
         /* Footer */
@@ -373,12 +524,21 @@
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 600;
             font-size: 1rem;
-            color: var(--primary-color);
+            color: var(--footer-color);
             opacity: 0.9;
+            transition: color 0.3s ease;
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .theme-switch-container {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+            .theme-toggle-btn {
+                width: 36px;
+                height: 36px;
+            }
             .layout-container {
                 padding: 1rem;
             }
@@ -397,6 +557,13 @@
     </style>
 </head>
 <body>
+    <!-- Theme Switcher (Icon-only Retro Toggle) -->
+    <div class="theme-switch-container">
+        <button id="theme-toggle" type="button" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark mode">
+            <span id="theme-icon" class="theme-icon"></span>
+        </button>
+    </div>
+
     <!-- Background Clouds -->
     <div class="background-clouds">
         <div class="cloud cloud-1"></div>
@@ -436,7 +603,7 @@
                 </p>
 
                 <!-- Tombol di Home -->
-                <a href="https://api.leaa.site" class="try-api-btn" style="text-decoration: none; text-align: center;">Documentation</a>
+                <a href="https://api.leaa.site" class="try-api-btn">Documentation</a>
             </div>
         </div>
         
@@ -451,19 +618,19 @@
                     <p>Bot multifungsi dan handal untuk mempermudah mengunduh media dan lain lain.</p>
                     <button class="try-api-btn" onclick="window.location.href='https://wa.me/6285156025673?text=.menu'">Try Now</button>
                 </div>
-                
-                <!-- Project Card 2 -->
-                <div class="arcade-card">
-                    <h3>Lea V2</h3>
-                    <p>Bot multifungsi dengan fitur AI, downloader, dan automasi obrolan pintar.</p>
-                    <button class="try-api-btn" onclick="window.location.href='https://wa.me/6289679235691?text=.menu'">Try Now</button>
-                </div>
             </div>
 
             <!-- WEB & TOOLS -->
             <h2 class="section-title">WEB & TOOLS</h2>
             <div class="cards-container">
-                <!-- Project Card 3 -->
+                <!-- Rest API Card -->
+                <div class="arcade-card">
+                    <h3>Rest API</h3>
+                    <p>Platform REST API publik dengan puluhan endpoint downloader, AI, tools, dan maker.</p>
+                    <button class="try-api-btn" onclick="window.location.href='https://api.leaa.site'">Try Now</button>
+                </div>
+
+                <!-- Project Card 2 -->
                 <div class="arcade-card">
                     <h3>Oshimatch</h3>
                     <p>Website Oshimatch untuk menemukan pasangan oshi favoritmu.</p>
@@ -508,11 +675,12 @@
 
     <!-- Footer Copyright -->
     <footer class="site-footer">
-        &copy; 2024 We Are The Future. All Rights Reserved.
+        &copy; 2026 We Are The Future. All Rights Reserved.
     </footer>
 
-    <!-- Script JavaScript untuk navigasi Tab -->
+    <!-- Script JavaScript untuk navigasi Tab & Dark Mode Switcher -->
     <script>
+        // Navigation Tabs
         function openTab(evt, tabName) {
             let tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
@@ -527,6 +695,43 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.classList.add("active-tab");
         }
+
+        // Theme Switcher Logic (matching API dashboard)
+        const SUN_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+        const MOON_SVG = `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+
+        function getPreferredTheme() {
+            const saved = localStorage.getItem("lea_theme") || localStorage.getItem("lea_api_theme");
+            if (saved === "light" || saved === "dark") {
+                return saved;
+            }
+            return "light";
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("lea_theme", theme);
+            localStorage.setItem("lea_api_theme", theme);
+            const themeIcon = document.getElementById("theme-icon");
+            const themeToggle = document.getElementById("theme-toggle");
+            if (themeIcon) {
+                themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG;
+            }
+            if (themeToggle) {
+                themeToggle.setAttribute(
+                    "title",
+                    theme === "dark" ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"
+                );
+            }
+        }
+
+        // Initialize Theme
+        applyTheme(getPreferredTheme());
+
+        document.getElementById("theme-toggle")?.addEventListener("click", () => {
+            const current = document.documentElement.getAttribute("data-theme") || "light";
+            applyTheme(current === "dark" ? "light" : "dark");
+        });
     </script>
 </body>
-    </html>
+</html>
